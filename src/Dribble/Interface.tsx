@@ -72,7 +72,7 @@ export default function Interface()
                     <motion.div
                         key={currentIndex}
                         animate={{x: [0, -10000] }}
-                        transition={{ duration: 10, reapeat: Infinity, ease:"linear" }}
+                        transition={{ duration: 10, repeat: Infinity, ease:"linear" }}
                         className=" flex space-x-5 items-center"
                     >
                         <div className='w-60 p-4 bg-white rounded-lg shadow-lg text-center'>
