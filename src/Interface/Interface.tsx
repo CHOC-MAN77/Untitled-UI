@@ -10,18 +10,17 @@ import { useState } from 'react';
 
 const teamMembers =
 [
-    {name: "Chloé Obrayan", role:"Security Agent", image:"/img/AT.jpg"},
-    {name: "Emmy Rosum", role:"Customer Success Agent", image:"/project1/public/img/Emmy Rosum.jpg"},
-    {name: "Sophie Chamberlain", role:"Specialized Support", image:"./img/Sophie Chamberlain.jpg"},
-    {name: "Lana Steiner", role:"VP of Customer Success", image:"./img/Lana Steiner.jpg"},
-    {name: "Orlando Diggs", role:"Customer Success Lead", image:"./img/Orlando Diggs.jpg"},
-    {name: "Sasha Kindred", role:"Customer Success Lead", image:"./img/Sasha Kindred.jpg"},
-    {name: "Jessica Dobre", role:"Payments Support", image:"/img/Jessica Dobre.jpg"}
+    {name: "Zahra Christensen", role:"Security Agent", image:"/img/Zahra Christensen.webp"},
+    {name: "Youssef Roberson", role:"Customer Success Agent", image:"public/img/Youssef Roberson.webp"},
+    {name: "Anita Cruz", role:"Specialized Support", image:"/img/Anita Cruz.webp"},
+    {name: "Sienna Hewitt", role:"VP of Customer Success", image:"./img/Sienna Hewitt.webp"},
+    {name: "Marco Kelly", role:"Customer Success Lead", image:"./img/Marco Kelly.webp"},
+    {name: "Jackson Reed", role:"Customer Success Lead", image:"./img/Jackson Reed.webp"},
+    {name: "Ava Bentley", role:"Payments Support", image:"/img/Ava Bentley.webp"}
 ];
 
 export default function Interface()
     {
-          const [currentIndex] = useState(0);
           const [phone, setPhone] = useState("");
         
  
@@ -68,19 +67,35 @@ export default function Interface()
                 </header>
 
                 <main className=' py-16'>
-                <div className="relative w-full justify-center items-center overflow-hidden">
+                <div className="relative w-full overflow-hidden py-10 bg-gray-100">
                     <motion.div
-                        key={currentIndex}
-                        animate={{x: [0, -10000] }}
-                        transition={{ duration: 10, repeat: Infinity, ease:"linear" }}
-                        className=" flex space-x-5 items-center"
-                    >
-                        <div className='w-60 p-4 bg-white rounded-lg shadow-lg text-center'>
-                            <img src={teamMembers[currentIndex].image} alt={teamMembers[currentIndex].name} className="w-24 h-24 rounded-full mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold">{teamMembers[currentIndex].name}</h3>
-                            <p className="text-gray-500">{teamMembers[currentIndex].role}</p>
-                        </div>
-                    </motion.div>
+        className="flex space-x-8"
+        animate={{ x: ["-50%", "0%"] }} // défilement de moitié de la largeur totale pour boucle continue
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 20, // ajuste la vitesse ici
+            ease: "linear",
+          },
+        }}
+      >
+        {/* On double la liste pour un défilement fluide sans saut */}
+        {[...teamMembers, ...teamMembers].map((member, index) => (
+          <div
+            key={index}
+            className="w-60 flex-shrink-0 bg-white rounded-lg shadow-lg p-4 text-center hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src={member.image}
+              alt={member.name}
+              className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 className="text-lg font-semibold">{member.name}</h3>
+            <p className="text-gray-500">{member.role}</p>
+          </div>
+        ))}
+      </motion.div>
                 </div>
 
                     
